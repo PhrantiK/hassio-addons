@@ -1,0 +1,40 @@
+{
+	"name": "letsdnsocloud",
+	"version": "1",
+	"slug": "letsdnsocloud",
+	"description": "Custom Domain with Cloudflare DNS, Let's Encrypt & DNS'O'Matic",
+	"url": "https://github.com/PhrantiK/letsdnsocloud",
+	"startup": "services",
+	"boot": "auto",
+	"map": ["ssl:rw"],
+	"options": {
+		"lets_encrypt": {
+			"accept_terms": true,
+			"certfile": "fullchain.pem",
+			"keyfile": "privkey.pem"
+		},
+		"cfzone": "xxx",
+		"cfapikey": "xxx",
+		"cfemail": "xxx",
+		"dompass": "xxx",
+		"domuser": "xxx",
+		"domhost": "dynamic",
+		"domains": ["example.com"],
+		"seconds": 300
+	},
+	"schema": {
+		"lets_encrypt": {
+			"accept_terms": "bool",
+			"certfile": "str",
+			"keyfile": "str"
+		},
+		"cfzone": "str",
+		"cfapikey": "str",
+		"cfemail": "email",
+		"dompass": "str",
+		"domuser": "str",
+		"domhost": "str",
+		"domains": ["str"],
+		"seconds": "int"
+	}
+}
