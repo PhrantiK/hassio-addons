@@ -1,4 +1,5 @@
 #!/bin/bash
+. /path/to/functions.sh
 set -e
 
 CERT_DIR=/data/letsencrypt
