@@ -8,24 +8,17 @@
 set -e
 
 CONFIG_PATH=/data/options.json
-
-CF_APIKEY=$(jq --raw-output '.cfapikey' $CONFIG_PATH)
-CF_ZONE=$(jq --raw-output '.cfzone' $CONFIG_PATH)
-CF_EMAIL=$(jq --raw-output '.cfemail' $CONFIG_PATH)
 SYS_CERTFILE=$(jq --raw-output '.lets_encrypt.certfile' $CONFIG_PATH)
 SYS_KEYFILE=$(jq --raw-output '.lets_encrypt.keyfile' $CONFIG_PATH)
-
-prefix="_acme-challenge."
 
 deploy_challenge() {
     local DOMAIN="${1}" TOKEN_FILENAME="${2}" TOKEN_VALUE="${3}"
 
-    curl -sX POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/dns_records"\
+    curl -sX POST "https://api.cloudflare.com/client/v4/zones/$ZONEID/dns_records"\
      	-H "X-Auth-Email: $CF_EMAIL"\
      	-H "X-Auth-Key: $CF_APIKEY"\
      	-H "Content-Type: application/json"\
-     	--data '{"type":"TXT","name":"'$prefix$1'","content":"'$TOKEN_VALUE'","ttl":120,"priority":10,"proxied":false}'\
-		-o $PWD/id.txt
+     	--data '{"type":"TXT","name":"_acme-challenge.'$1'","content":"'$3'","ttl":120,"priority":10,"proxied":false}' > /dev/null
 
     echo "Waiting 15 seconds for record to load properly"
     sleep 15
@@ -54,17 +47,17 @@ deploy_challenge() {
 clean_challenge() {
     local DOMAIN="${1}" TOKEN_FILENAME="${2}" TOKEN_VALUE="${3}"
 
-    key_value=$(grep -Eo '"id":.*?[^\\]"' $PWD/id.txt)
-
-   #extract id
-   id="${key_value:6:32}"
-
-   curl -sX DELETE "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/dns_records/$id" \
+    #Grab ID for the TXT record
+    TXTID=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones/$ZONEID/dns_records" \
       -H "X-Auth-Email: $CF_EMAIL"\
       -H "X-Auth-Key: $CF_APIKEY"\
-      -H "Content-Type: application/json"
+      -H "Content-Type: application/json" | jq -r '.result[] | (select(.name | contains("_acme-challenge.'$1'"))) | (select (.type | contains("TXT"))) | .id')
 
-       rm $PWD/id.txt
+    #Delete TXT record
+    curl -sX DELETE "https://api.cloudflare.com/client/v4/zones/$ZONEID/dns_records/$TXTID" \
+       -H "X-Auth-Email: $CF_EMAIL"\
+       -H "X-Auth-Key: $CF_APIKEY"\
+       -H "Content-Type: application/json" > /dev/null
 
     # This hook is called after attempting to validate each domain,
     # whether or not validation was successful. Here you can delete
