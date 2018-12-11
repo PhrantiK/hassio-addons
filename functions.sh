@@ -26,23 +26,25 @@ function grabaid() {
 #Create A record
 function createarecord() {
 
-  echo "Creating A record for $LE_DOMAINS at $IP"
   curl -sX POST "https://api.cloudflare.com/client/v4/zones/$ZONEID/dns_records"\
     -H "X-Auth-Email: $CF_EMAIL"\
     -H "X-Auth-Key: $CF_APIKEY"\
     -H "Content-Type: application/json"\
     --data '{"type":"A","name":"'$LE_DOMAINS'","content":"'$IP'","proxied":false}' -o /dev/null
 
+echo "A record created for $LE_DOMAINS at $IP"
+
 }
 
 #Update A record IP address
 function updateip() {
 
-  echo "Updating $LE_DOMAINS with IP: $1"
   curl -sX PUT "https://api.cloudflare.com/client/v4/zones/$ZONEID/dns_records/$AID"\
     -H "X-Auth-Email: $CF_EMAIL"\
     -H "X-Auth-Key: $CF_APIKEY"\
     -H "Content-Type: application/json"\
     --data '{"type":"A","name":"'$LE_DOMAINS'","content":"'$1'","proxied":false}' -o /dev/null
+
+  echo "Updated $LE_DOMAINS with IP: $1"
 
 }

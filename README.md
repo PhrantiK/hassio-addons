@@ -1,36 +1,44 @@
 # letsdnsocloud
 
-## Custom Domain with free Cloudflare DNS hosting, DDNS and Let's Encrypt (DNS Challenge)
+## Hass.io Custom Domain with free CloudFlare DNS hosting, DDNS and Let's Encrypt (DNS Challenge)
 
-Use a custom domain (subdomains supported) with Let's Encrypt on Hass.io without having to open port 80.
+Use a custom domain with Let's Encrypt on Hass.io without having to open port 80 to the world.
 
-Dynamic DNS using the CloudFlare API baked in, updates every 5 mins.
+### Features:
+
+* Automatic A record creation with current IP.
+* Domain or Subdomain supported.
+* Dynamic DNS using the CloudFlare API, monitors changes and updates IP every 5 mins.
+* Let's Encrypt certificate generation via DNS Challenge.
+* Automatic DNS Challenge TXT record generation & cleanup.
+
+&nbsp;&nbsp;&nbsp;&nbsp;_Note: Only tested with single domain. Will remove domain array or update for multiple domains in future_
 
 ## Quick & Dirty get started guide:
 
 ### 1. CloudFlare
-  - Sign up for free account
-  - Add your base domain (no need to create any DNS records)
-  - Make a note of the CloudFlare name servers
-  - Turn off the free SSL option under the Crypto menu (SSL to Off & Disable Universal SSL)
+  - Sign up for free account.
+  - Add your base domain (no need to create any DNS records).
+  - Make a note of the CloudFlare name servers.
+  - Turn off the free SSL option under the Crypto menu (SSL to Off & Disable Universal SSL).
 
 ### 2. Domain Registrar
   - Change nameservers for your domain to point to Cloudflare.
 
 ### 3. Home Router
-  - Forward desired public facing port (TCP & UDP) to your Hassio local IP & port (default local port is 8123).
-  
+  - Forward desired public facing port (TCP & UDP) to your Hass.io local IP & port (default local port is 8123).
+
   &nbsp;&nbsp;&nbsp;&nbsp;_Forward port 443 if you want to access externally without specifying a port. i.e_ https://yourdomain.com _rather than_ https://yourdomain.com:1234
 
-### 4. Hassio config
-  - Go to Hass.io menu > Addon Store
-  - Enable Samba Share addon
-  - Mount addons share in your OS
-  - Download zip from Github (or git clone into addons share)
-  - Copy files into addons share
-  - Go back to to Hass.io menu > Addon Store (hit refresh, top right) > Local add-ons > letsdnsocloud
+### 4. Hass.io addon install & config
+  - Go to Hass.io menu > Addon Store.
+  - Enable Samba Share addon.
+  - Mount "addons" share in your OS.
+  - Download zip from Github (or git clone into /addons via ssh).
+  - Copy files into addons share.
+  - Go back to to Hass.io menu > Addon Store > Hit refresh arrow (top right) > Local add-ons > letsdnsocloud.
   - Edit config file with your CloudFlare Global API Key, your CloudFlare email address and domain.
-  - Hit start and wait for it to create the certificates.
+  - Hit start and wait for it to create the certificates (mount SSL share to verify).
   - Add the following to your configuration.yaml:
 ```
   http:
@@ -40,9 +48,14 @@ Dynamic DNS using the CloudFlare API baked in, updates every 5 mins.
     ip_ban_enabled: true
     login_attempts_threshold: 5
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;_ip ban optional but recommended_
 
 ### 5. Restart homeassistant
+  - Profit.
+
+#### 1.2 Todo:
+  - [] Remove domain array
+  - [] Move repo to proper hassio-addon repo for easier installation
+  - [] Publish addon
 
 ***
 

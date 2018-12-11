@@ -16,8 +16,8 @@ deploy_challenge() {
      	-H "Content-Type: application/json"\
      	--data '{"type":"TXT","name":"_acme-challenge.'$1'","content":"'$3'","ttl":120,"priority":10,"proxied":false}' > /dev/null
 
-    echo "Waiting 15 seconds for record to load properly"
-    sleep 15
+    echo "Waiting 30 seconds before deleting for LE"
+    sleep 30
 
     # This hook is called once for every domain that needs to be
     # validated, including any alternative names you may have listed.
