@@ -53,9 +53,9 @@ Use a custom domain with Let's Encrypt on Hass.io without having to open port 80
   - Profit.
 
 #### 1.2 Todo:
-  - []Remove domain array
-  - []Move repo to proper hassio-addon repo for easier installation
-  - []Publish addon
+  - [ ] Remove domain array
+  - [ ] Move repo to proper hassio-addon repo for easier installation
+  - [ ] Publish addon
 
 ***
 
