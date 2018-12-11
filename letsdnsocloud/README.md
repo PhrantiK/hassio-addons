@@ -30,15 +30,9 @@ Use a custom domain with Let's Encrypt on Hass.io without having to open port 80
 
   &nbsp;&nbsp;&nbsp;&nbsp;_Forward port 443 if you want to access externally without specifying a port. i.e_ https://yourdomain.com _rather than_ https://yourdomain.com:1234
 
-### 4. Hass.io addon install & config
-  - Go to Hass.io menu > Addon Store.
-  - Enable Samba Share addon.
-  - Mount "addons" share in your OS.
-  - Download zip from Github (or git clone into /addons via ssh).
-  - Copy files into addons share.
-  - Go back to to Hass.io menu > Addon Store > Hit refresh arrow (top right) > Local add-ons > letsdnsocloud.
+### 4. Hass.io config
   - Edit config file with your CloudFlare Global API Key, your CloudFlare email address and domain.
-  - Hit start and wait for it to create the certificates (mount SSL share to verify).
+  - Hit start and wait for it to create the certificates.
   - Add the following to your configuration.yaml:
 ```
   http:
@@ -54,7 +48,7 @@ Use a custom domain with Let's Encrypt on Hass.io without having to open port 80
 
 #### 1.2 Todo:
   - [ ] Remove domain array
-  - [ ] Move repo to proper hassio-addon repo for easier installation
+  - [x] Move repo to proper hassio-addon repo for easier installation
   - [ ] Publish addon
 
 ***
