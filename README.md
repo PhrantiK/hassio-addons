@@ -19,7 +19,7 @@ Dynamic DNS using the CloudFlare API baked in, updates every 5 mins.
 
 ### 3. Home Router
   - Forward desired public facing port (TCP & UDP) to your Hassio local IP & port (default local port is 8123).
-  >Forward port 443 if you want to access externally without specifying a port. i.e https://yourdomain.com rather than https://yourdomain.com:1234
+  >&nbsp;&nbsp;Forward port 443 if you want to access externally without specifying a port. i.e https://yourdomain.com rather than https://yourdomain.com:1234
 
 ### 4. Hassio config
   - Go to Hass.io menu > Addon Store
@@ -39,9 +39,11 @@ Dynamic DNS using the CloudFlare API baked in, updates every 5 mins.
     ip_ban_enabled: true
     login_attempts_threshold: 5
 ```
->ip ban optional but recommended
+>&nbsp;&nbsp;ip ban optional but recommended
 
 ### 5. Restart homeassistant
+
+***
 
 _Let's Encrypt DNS Challenge code based on the Duckdns addon:_
 
