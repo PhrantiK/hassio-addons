@@ -46,13 +46,8 @@ Use a custom domain with Let's Encrypt on Hass.io without having to open port 80
 ### 5. Restart homeassistant
   - Profit.
 
-#### 1.2 Todo:
-  - [ ] Remove domain array
-  - [x] Move repo to proper hassio-addon repo for easier installation
-  - [ ] Publish addon
-
 ***
-Credits & Thanks: 
+Credits & Thanks:
 _Let's Encrypt DNS Challenge code based on the Duckdns addon:_
 
 https://github.com/home-assistant/hassio-addons/tree/master/duckdns
