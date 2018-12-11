@@ -19,6 +19,7 @@ Dynamic DNS using the CloudFlare API baked in, updates every 5 mins.
 
 ### 3. Home Router
   - Forward desired public facing port (TCP & UDP) to your Hassio local IP & port (default local port is 8123).
+  
   &nbsp;&nbsp;&nbsp;&nbsp;_Forward port 443 if you want to access externally without specifying a port. i.e_ https://yourdomain.com _rather than_ https://yourdomain.com:1234
 
 ### 4. Hassio config
