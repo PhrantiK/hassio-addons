@@ -43,6 +43,6 @@ Dynamic DNS using the CloudFlare API baked in, updates every 5 mins.
 
 ### 5. Restart homeassistant
 
-Let's Encrypt DNS Challenge code based on the Duckdns addon:
+_Let's Encrypt DNS Challenge code based on the Duckdns addon:_
 
 https://github.com/home-assistant/hassio-addons/tree/master/duckdns
