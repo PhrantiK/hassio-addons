@@ -12,8 +12,8 @@ LE_DOMAINS=$(jq --raw-output '.domains[]' $CONFIG_PATH)
 LE_UPDATE="0"
 
 #CloudFlare Deets
-CF_APIKEY=$(jq --raw-output '.cfapikey' $CONFIG_PATH)
-CF_EMAIL=$(jq --raw-output '.cfemail' $CONFIG_PATH)
+export CF_APIKEY=$(jq --raw-output '.cfapikey' $CONFIG_PATH)
+export CF_EMAIL=$(jq --raw-output '.cfemail' $CONFIG_PATH)
 
 #-------
 DOMAINS=$(jq --raw-output '.domains | join(",")' $CONFIG_PATH)
@@ -21,7 +21,7 @@ WAIT_TIME=$(jq --raw-output '.seconds' $CONFIG_PATH)
 
 #Extract Zone ID for Domain
 grabzoneid
-#Exract A record ID
+#Exract A record ID if one exists already
 grabaid
 
 #Grab current ip
@@ -36,6 +36,17 @@ if [ -z "$AID" ]
 fi
 
 # Register/generate certificate if terms accepted
+
+function le_renew() {
+    local domain_args=()
+    # Prepare domain for Let's Encrypt
+    for domain in $LE_DOMAINS; do
+        domain_args+=("--domain" "$domain")
+    done
+    dehydrated --cron --hook ./hooks.sh --challenge dns-01 "${domain_args[@]}" --out "$CERT_DIR" --config "$WORK_DIR/config" || true
+    LE_UPDATE="$(date +%s)"
+}
+
 if [ "$LE_TERMS" == "true" ]; then
     # Init folder structs
     mkdir -p "$CERT_DIR"
@@ -49,9 +60,6 @@ if [ "$LE_TERMS" == "true" ]; then
     fi
 fi
 
-#Get todays date in seconds
-LE_UPDATE="$(date +%s)"
-
 # Loop: Watch for new IP and update. Renew Cert after 30 days
 while true; do
 
@@ -63,7 +71,6 @@ while true; do
 
     now="$(date +%s)"
     if [ "$LE_TERMS" == "true" ] && [ $((now - LE_UPDATE)) -ge 43200 ]; then
-        LE_UPDATE="$(date +%s)"
         le_renew
     fi
     sleep "$WAIT_TIME"

@@ -1,6 +1,5 @@
 #!/bin/bash
 # shellcheck disable=SC2034
-
 #Based on:
 #https://github.com/sineverba/cfhookbash
 #https://github.com/home-assistant/hassio-addons/tree/master/duckdns

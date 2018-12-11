@@ -1,24 +1,13 @@
 #!/bin/bash
 
-# Function that performs a renew
-function le_renew() {
-    local domain_args=()
-
-    # Prepare domain for Let's Encrypt
-    for domain in $LE_DOMAINS; do
-        domain_args+=("--domain" "$domain")
-    done
-    dehydrated --cron --hook ./hooks.sh --challenge dns-01 "${domain_args[@]}" --out "$CERT_DIR" --config "$WORK_DIR/config" || true
-}
-
 #Extract Zone ID for Domain
 function grabzoneid() {
 
   #Strip Subdomain to get bare domain
   BASEDOMAIN=$(sed 's/.*\.\(.*\..*\)/\1/' <<< $LE_DOMAINS)
 
-  #Grab Zoneid
-  ZONEID=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones" \
+  #Grab Zoneid & Export for Hooks.sh
+  export ZONEID=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones" \
     -H "X-Auth-Email: $CF_EMAIL" \
     -H "X-Auth-Key: $CF_APIKEY" \
     -H "Content-Type: application/json" | jq -r '.result[] | (select(.name | contains("'$BASEDOMAIN'"))) | .id')

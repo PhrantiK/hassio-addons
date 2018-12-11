@@ -2,7 +2,7 @@
 	"name": "letsdnsocloud",
 	"version": "1",
 	"slug": "letsdnsocloud",
-	"description": "Custom Domain with Cloudflare DNS hosting DDNS and Let's Encrypt (DNS Challenge)",
+	"description": "Custom Domain with Cloudflare DNS hosting, DDNS and Let's Encrypt (DNS Challenge)",
 	"url": "https://github.com/PhrantiK/letsdnsocloud",
 	"startup": "services",
 	"boot": "auto",
@@ -14,8 +14,8 @@
 			"keyfile": "privkey.pem"
 		},
 		"cfapikey": "CloudFlare API Key",
-		"cfemail": "CloudFlare email address",
-		"domains": ["example.com"],
+		"cfemail": "CloudFlare Email",
+		"domains": ["sub.example.com"],
 		"seconds": 300
 	},
 	"schema": {
