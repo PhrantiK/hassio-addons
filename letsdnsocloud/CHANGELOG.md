@@ -5,3 +5,4 @@
 
 ## 1.1
 - Remove Duckdns service and use CF Api to update IP address dynamically.
+- Move addon to proper repo for easier install

@@ -52,7 +52,7 @@ Use a custom domain with Let's Encrypt on Hass.io without having to open port 80
   - [ ] Publish addon
 
 ***
-
+Credits & Thanks: 
 _Let's Encrypt DNS Challenge code based on the Duckdns addon:_
 
 https://github.com/home-assistant/hassio-addons/tree/master/duckdns

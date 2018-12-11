@@ -3,7 +3,7 @@
 	"version": "1.1",
 	"slug": "letsdnsocloud",
 	"description": "Custom Domain with Cloudflare DNS hosting, DDNS and Let's Encrypt (DNS Challenge)",
-	"url": "https://github.com/PhrantiK/letsdnsocloud",
+	"url": "https://github.com/PhrantiK/hassio-addons",
 	"startup": "services",
 	"boot": "auto",
 	"map": ["ssl:rw"],
