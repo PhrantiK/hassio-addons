@@ -1,2 +1,3 @@
 # hassio-addons
-Custom Domain with free Cloudflare DNS hosting, DDNS and Let's Encrypt 
+
+## Custom Domain with Cloudflare DNS hosting, DDNS and Let's Encrypt
