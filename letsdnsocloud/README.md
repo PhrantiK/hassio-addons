@@ -20,7 +20,8 @@ Use a custom domain with Let's Encrypt on Hass.io without having to open any por
   - Sign up for free account.
   - Add your base domain (no need to create any DNS records).
   - Make a note of the CloudFlare name servers.
-  - Optional: Turn off the free SSL option under the Crypto menu (SSL to Off & Disable Universal SSL).
+  - Option 1: Set the free SSL option under the crypto menu to "Full (strict)" and enable Universal SSL.
+  - Option 2: Turn off the free SSL option under the Crypto menu (SSL to Off & Disable Universal SSL).
 
 ### 2. Domain Registrar
   - Change nameservers for your domain to point to Cloudflare.
