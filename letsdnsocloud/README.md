@@ -29,7 +29,8 @@ Use a custom domain with Let's Encrypt on Hass.io without having to open any por
   - Optional: Forward desired public facing port (TCP & UDP) to your Hass.io local IP & port (default local port is 8123).
 
   &nbsp;&nbsp;&nbsp;&nbsp;_ Example: Forward port 443 to local port if you want to access externally without specifying a port. i.e_ https://yourdomain.com _rather than_ https://yourdomain.com:1234
-
+  &nbsp;&nbsp;&nbsp;&nbsp;_ Note: If you do not forward any ports, make sure your FQDN (Domain name) resolves to HomeAssistant locally
+  
 ### 4. Hass.io config
   - Install plugin using /addons directory or GIT
   - Edit config with your CloudFlare Global API Key, your CloudFlare email address and domain.
