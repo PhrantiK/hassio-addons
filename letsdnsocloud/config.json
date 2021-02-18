@@ -16,6 +16,7 @@
 		},
 		"cfapikey": "CloudFlare API Key",
 		"cfemail": "CloudFlare Email",
+		"cfproxied": false,
 		"domains": ["sub.example.com"],
 		"seconds": 300
 	},
@@ -27,6 +28,7 @@
 		},
 		"cfapikey": "str",
 		"cfemail": "email",
+		"cfproxied": "bool",
 		"domains": ["str"],
 		"seconds": "int"
 	}
