@@ -28,7 +28,6 @@
 		},
 		"cfapikey": "str",
 		"cfemail": "email",
-		"cfproxied": "bool",
 		"domains": ["str"],
 		"seconds": "int"
 	}
