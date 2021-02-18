@@ -30,7 +30,7 @@ function createarecord() {
     -H "X-Auth-Email: $CF_EMAIL"\
     -H "X-Auth-Key: $CF_APIKEY"\
     -H "Content-Type: application/json"\
-    --data '{"type":"A","name":"'$LE_DOMAINS'","content":"'$IP'","proxied":false}' -o /dev/null
+    --data '{"type":"A","name":"'$LE_DOMAINS'","content":"'$IP'","proxied":true}' -o /dev/null
 
 echo "A record created for $LE_DOMAINS at $IP"
 
@@ -43,7 +43,7 @@ function updateip() {
     -H "X-Auth-Email: $CF_EMAIL"\
     -H "X-Auth-Key: $CF_APIKEY"\
     -H "Content-Type: application/json"\
-    --data '{"type":"A","name":"'$LE_DOMAINS'","content":"'$1'","proxied":false}' -o /dev/null
+    --data '{"type":"A","name":"'$LE_DOMAINS'","content":"'$1'","proxied":true}' -o /dev/null
 
   echo "Updated $LE_DOMAINS with IP: $1"
 
