@@ -14,6 +14,7 @@ LE_UPDATE="0"
 #CloudFlare Deets
 export CF_APIKEY=$(jq --raw-output '.cfapikey' $CONFIG_PATH)
 export CF_EMAIL=$(jq --raw-output '.cfemail' $CONFIG_PATH)
+export CF_PROXIED=$(jq --raw-output '.cfproxied' $CONFIG_PATH)
 
 #-------
 DOMAINS=$(jq --raw-output '.domains | join(",")' $CONFIG_PATH)
