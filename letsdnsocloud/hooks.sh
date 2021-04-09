@@ -47,7 +47,7 @@ clean_challenge() {
     TXTID=$(curl -sX GET "https://api.cloudflare.com/client/v4/zones/$ZONEID/dns_records" \
       -H "X-Auth-Email: $CF_EMAIL"\
       -H "X-Auth-Key: $CF_APIKEY"\
-      -H "Content-Type: application/json" | jq -r '.result[] | (select(.name | contains("_acme-challenge.'$1'"))) | (select (.type | contains("TXT"))) | .id')
+      -H "Content-Type: application/json" | jq -r '.result[]? | (select(.name | contains("_acme-challenge.'$1'"))) | (select (.type | contains("TXT"))) | .id')
 
     #Delete TXT record
     curl -sX DELETE "https://api.cloudflare.com/client/v4/zones/$ZONEID/dns_records/$TXTID" \
